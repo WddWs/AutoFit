@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="homepage" :class="{'vw-mode':isVerticalRatio}">
+            <div class="nav">123</div>
+        </div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            test: '123',
+            isVerticalRatio: false
+        },
+        mounted() {
+            this.resizeHandler()
+            window.addEventListener('resize', this.resizeHandler)
+        },
+        methods: {
+            resizeHandler() {
+                const clientWidth = document.documentElement.clientWidth
+                const clientHeight = document.documentElement.clientHeight
+                    // 当长宽比为竖向比例时
+                this.isVerticalRatio = clientWidth / clientHeight < 1920 / 1080;
+            }
+        }
+
+    })
+</script>
+
+</html>
